@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { withRouter } from 'react-router';
+import {
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import Header from './components/header';
+import GameList from './screens/game-list';
+import Api from './screens/api';
+import GameDisplay from './screens/game-display';
+import Leaderboards from './screens/leaderboards';
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Header />
+        <Switch>
+          <Route path="/leaderboards" render={({match})        => <Leaderboards match={match} />} />
+          <Route path="/api"          render={({match})        => <Api          match={match} />} />
+          <Route path="/games/:game"  render={({match})        => <GameDisplay  match={match} />} />
+          <Route path="/games"       render={({match})        => <GameList     match={match} />} />
+          <Redirect from="*" to="/games" />
+        </Switch>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default withRouter(App);
