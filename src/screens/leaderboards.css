@@ -1,5 +1,5 @@
 body {
-    background: white;
+    background: black;
 }
 .game-list-container {
     display: flex;
@@ -21,6 +21,7 @@ body {
     font-weight: bolder;
     flex-grow: 1;
     text-align: center;
+    transition: background 0.25s;
 }
 
 .game-list-container li.selected {
@@ -28,18 +29,48 @@ body {
     color: white;
 }
 
+.ReactTable {
+    border: none;
+}
+
+.ReactTable .rt-thead.-header {
+    box-shadow: 0 2px 15px 0 rgba(255, 20, 145, 0.3);
+}
+
 .ReactTable .rt-thead .rt-th, .ReactTable .rt-thead .rt-td {
-    border-right: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid white;
     transition: box-shadow .3s cubic-bezier(.175,.885,.32,1.275);
-    box-shadow: inset 0 0 0 0 transparent;
+}
+
+.ReactTable .rt-tr.-even {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .ReactTable .rt-tbody .rt-tr-group {
-    border-bottom: solid 1px rgba(255,255,255,0.5);
+    border-bottom: solid 1px rgba(255,255,255,0.05);
 }
 
 .ReactTable .rt-tbody .rt-td {
-    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pagination-bottom {
+    background-color: rgb(19, 19, 19);
+}
+
+.ReactTable .-pagination {
+    box-shadow: 0 0 15px 0 rgba(255,255,255,0.1);
+    border-top: 5px solid rgba(255,255,255,0.1);
+}
+
+.ReactTable .-pagination .-btn {
+    color: white;
+    background-color: rgb(65, 65, 65);
+}
+
+.ReactTable .-pagination .-btn:hover {
+    color: white;
+    background-color: gray;
 }
 
 @media screen and (max-width: 600px) {

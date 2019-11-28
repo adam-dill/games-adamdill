@@ -22,11 +22,7 @@ export default class Leaderboards extends React.Component {
 
     render() {
         let listGames = this.state.games.map((item, key) =>  <li key={key} onClick={this.handleGameClick.bind(this,item)}>{item.name}</li> );
-        let start = listGames.length;
-        let max = listGames.length + 1;
-        for (var i = start; i < max; i++) {
-            listGames.push(<li key={i} onClick={this.handleGameClick.bind(this,undefined)}>Game Name</li>);
-        }
+        
         return (
             <div>
                 <ul className="game-list-container">
@@ -91,5 +87,16 @@ export default class Leaderboards extends React.Component {
             });
         });
         return returnValue;
+    }
+
+    addMockGames(arr, num) {
+        if (arr === undefined) { return; }
+        if (num === undefined) { num = 10; }
+        
+        let start = arr.length;
+        let max = arr.length + num;
+        for (var i = start; i < max; i++) {
+            arr.push(<li key={i}>Game Name</li>);
+        }
     }
 }
