@@ -1,0 +1,54 @@
+body {
+    background: white;
+}
+.game-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin:0px;
+    padding:3px;
+    background-color: RebeccaPurple;
+    overflow: auto;
+}
+
+.game-list-container li {
+    padding: 10px 25px;
+    background-color: plum;
+    margin: 1px;
+    cursor: pointer;
+    color: darkviolet;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.game-list-container li.selected {
+    background-color: darkviolet;
+    color: white;
+}
+
+.ReactTable .rt-thead .rt-th, .ReactTable .rt-thead .rt-td {
+    border-right: 1px solid rgba(255,255,255,0.5);
+    transition: box-shadow .3s cubic-bezier(.175,.885,.32,1.275);
+    box-shadow: inset 0 0 0 0 transparent;
+}
+
+.ReactTable .rt-tbody .rt-tr-group {
+    border-bottom: solid 1px rgba(255,255,255,0.5);
+}
+
+.ReactTable .rt-tbody .rt-td {
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+@media screen and (max-width: 600px) {
+    .game-list-container {
+        flex-wrap: nowrap;
+        overflow: auto;
+    }
+
+    .game-list-container li {
+        flex-shrink: 0;
+    }
+}
