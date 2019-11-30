@@ -6,8 +6,27 @@ body {
   margin:0px;
   padding:0px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.button {
+  background-color: plum;
+  color: darkviolet;
+  border: 1px solid rgb(70, 69, 69);
+  padding: 5px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.25s, color 0.25s;
+}
+
+.button:hover {
+  background-color: darkviolet;
   color: white;
-  background-color: black;
+}
+
+.wrapper {
+  width: 960px;
+  margin: 0px auto;
 }
 
 header {
@@ -37,4 +56,12 @@ header a {
 header a.selected {
   background-color: DeepPink;
   color: white;
+}
+
+
+@media screen and (max-width: 960px) {
+  .wrapper {
+    width: 100%;
+    margin: 0px;
+  }
 }

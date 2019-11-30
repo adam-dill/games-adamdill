@@ -16,7 +16,7 @@ import Leaderboards from './screens/leaderboards';
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <Header />
         <Switch>
           <Route path="/leaderboards" render={({match})        => <Leaderboards match={match} />} />

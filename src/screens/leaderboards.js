@@ -1,5 +1,5 @@
 import React from 'react';
-import DataAdapter from '../data/dataAdapter';
+import DataAdapter from '../data/leaderboardsDataAdapter';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import './leaderboards.css';
@@ -36,23 +36,21 @@ export default class Leaderboards extends React.Component {
     }
 
     async loadGames() {
-        let response = await this._adapter.getGames();
-        let json = await response.json();
-        this.setState({games: json.data});
+        let data = await this._adapter.getGames();
+        this.setState({games: data});
     }
 
     async loadScores(gameId) {
-        let response = await this._adapter.getGameScores(gameId);
-        let json = await response.json();
-        this.setState({scores: json.data});
+        let data = await this._adapter.getGameScores(gameId);
+        this.setState({scores: data});
     }
 
     handleGameClick(item, e) {
         if (this.state.currentSelection !== undefined) {
             this.state.currentSelection.classList.remove('selected');
         }
-        this.state.currentSelection = e.currentTarget;
-        this.state.currentSelection.classList.add('selected');
+        this.setState({currentSelection: e.currentTarget});
+        e.currentTarget.classList.add('selected');
         this.loadScores(item.id);
     }
 
@@ -66,7 +64,6 @@ export default class Leaderboards extends React.Component {
                 }
             }
         });
-        let sorted = scoreColumns.sort();
         let returnValue = [
             {
                 Header: 'Name',
