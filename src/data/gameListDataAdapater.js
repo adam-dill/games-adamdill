@@ -7,7 +7,7 @@ export default class DataAdapter {
         {
             name: 'Box Runner',
             slug: 'box-runner',
-            image: 'assets/titleimages/pummel-party.jpg',
+            image: '/assets/titleimages/pummel-party.jpg',
             descriptionShort: 'Box Runner description...',
             description: 'Box Runner description long.',
             git: 'https://github.com/adam-dill/box-runner',
@@ -18,7 +18,7 @@ export default class DataAdapter {
         {
             name: 'E.L.E.',
             slug: 'ele',
-            image: 'assets/titleimages/retro-town.jpg',
+            image: '/assets/titleimages/retro-town.jpg',
             descriptionShort: 'E.L.E. description...E.L.E. description...E.L.E. description...E.L.E. description...',
             description: 'E.L.E. descriptionE.L.E. description long.',
             git: 'https://github.com/adam-dill/ELE',
@@ -29,7 +29,7 @@ export default class DataAdapter {
         {
             name: 'Game of Life',
             slug: 'game-of-life',
-            image: 'assets/titleimages/snakes-and-ladders.jpg',
+            image: '/assets/titleimages/snakes-and-ladders.jpg',
             descriptionShort: 'Game of Life description...',
             description: 'Game of Life description long.',
             git: 'https://github.com/adam-dill/react-game-of-life',

@@ -53,7 +53,7 @@ header a {
   padding: 7px 35px;
   font-weight: bold;
 }
-header a.selected {
+header a.active {
   background-color: DeepPink;
   color: white;
 }

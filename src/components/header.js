@@ -8,9 +8,9 @@ export default class Header extends React.Component {
             <header>
                 <h1>Games</h1>
                 <nav>
-                    <NavLink to="/games" activeClassName="selected">Projects</NavLink>
-                    <NavLink to="/leaderboards" activeClassName="selected">Leaderboards</NavLink>
-                    <NavLink to="/api" activeClassName="selected">API</NavLink>
+                    <NavLink to="/projects">Projects</NavLink>
+                    <NavLink to="/leaderboards">Leaderboards</NavLink>
+                    <NavLink to="/api">API</NavLink>
                 </nav>
             </header>
         );

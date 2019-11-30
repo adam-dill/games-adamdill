@@ -19,11 +19,12 @@ class App extends React.Component {
       <div className="wrapper">
         <Header />
         <Switch>
-          <Route path="/leaderboards" render={({match})        => <Leaderboards match={match} />} />
-          <Route path="/api"          render={({match})        => <Api          match={match} />} />
-          <Route path="/games/:game"  render={({match})        => <GameDisplay  match={match} />} />
-          <Route path="/games"       render={({match})        => <GameList     match={match} />} />
-          <Redirect from="*" to="/games" />
+          <Route path="/leaderboards/:game" render={({match}) => <Leaderboards match={match} />} />
+          <Route path="/leaderboards"       component={Leaderboards} />
+          <Route path="/api"                component={Api} />
+          <Route path="/projects/:game"        render={({match}) => <GameDisplay  match={match} />} />
+          <Route path="/projects"              component={GameList} />
+          <Redirect from="*" to="/projects" />
         </Switch>
       </div>
     );

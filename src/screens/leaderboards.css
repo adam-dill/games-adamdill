@@ -8,7 +8,7 @@
     overflow: auto;
 }
 
-.game-list-container li {
+.game-list-container a {
     padding: 10px 25px;
     background-color: plum;
     margin: 1px;
@@ -21,7 +21,7 @@
     transition: background 0.25s;
 }
 
-.game-list-container li.selected {
+.game-list-container a.active {
     background-color: darkviolet;
     color: white;
 }

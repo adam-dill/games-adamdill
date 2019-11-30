@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import DataAdapter from '../data/leaderboardsDataAdapter';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
@@ -12,7 +13,7 @@ export default class Leaderboards extends React.Component {
         this.state = {
             games: [],
             scores: [],
-            currentSelection: undefined,
+            currentGame:undefined,
         };
     }
 
@@ -20,14 +21,20 @@ export default class Leaderboards extends React.Component {
         this.loadGames();
     }
 
+    componentDidUpdate() {
+        let { match: { params } } = this.props;
+        if (this.state.currentGame !== params.game) {
+            this.state.currentGame = params.game;
+            this.loadScores();
+        }
+    }
+
     render() {
-        let listGames = this.state.games.map((item, key) =>  <li key={key} onClick={this.handleGameClick.bind(this,item)}>{item.name}</li> );
-        
         return (
             <div>
-                <ul className="game-list-container">
-                    { listGames }
-                </ul>
+                <div className="game-list-container">
+                    { this.state.games.map((item, key) => <NavLink key={key} to={`/leaderboards/${item.slug}`} exact>{item.name}</NavLink>) }
+                </div>
                 <ReactTable data={this.state.scores} 
                             columns={this.getScoreColumns()}
                             defaultPageSize={10} />
@@ -40,18 +47,14 @@ export default class Leaderboards extends React.Component {
         this.setState({games: data});
     }
 
-    async loadScores(gameId) {
-        let data = await this._adapter.getGameScores(gameId);
-        this.setState({scores: data});
-    }
-
-    handleGameClick(item, e) {
-        if (this.state.currentSelection !== undefined) {
-            this.state.currentSelection.classList.remove('selected');
+    async loadScores() {
+        let game = await this._adapter.getGame(this.state.currentGame);
+        if (game === undefined) {
+            this.setState({scores: []});
+            return;
         }
-        this.setState({currentSelection: e.currentTarget});
-        e.currentTarget.classList.add('selected');
-        this.loadScores(item.id);
+        let data = await this._adapter.getGameScores(game.id);
+        this.setState({scores: data});
     }
 
     getScoreColumns() {
