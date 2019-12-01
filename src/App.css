@@ -32,10 +32,10 @@ body {
 header {
   border-bottom: 2px solid DeepPink;
   display: flex;
-  align-items: flex-end;
 }
 
 header h1 {
+  align-self:center;
   font-family: PageTitle;
   font-size: 40pt;
   margin: 10px 20px 0px;
@@ -43,8 +43,27 @@ header h1 {
   color: DeepPink;
 }
 
+header .hamburger-menu {
+  display: none;
+  align-self:flex-end;
+  font-size: 20pt;
+  color: DeepPink;
+  margin: 0px 20px 10px;
+  border: none;
+  background: none;
+}
+
+header .hamburger-menu:focus {
+  outline:none;
+}
+
 header nav {
   display: flex;
+  align-self:flex-end;
+}
+
+header nav.nav-hide {
+  display: inherit;
 }
 
 header a {
@@ -63,5 +82,29 @@ header a.active {
   .wrapper {
     width: 100%;
     margin: 0px;
+  }
+
+  header {
+    justify-content: space-between;
+  }
+
+  header .hamburger-menu {
+    display: inline-block;
+  }
+
+  header nav {
+    flex-direction: column;
+    position: absolute;
+    right: 0px;
+    top: 72px;
+    background-color: white;
+    border: 1px solid gray;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, .3);
+    z-index: 10;
+    width: 100%;
+  }
+
+  header nav.nav-hide {
+    display: none;
   }
 }
