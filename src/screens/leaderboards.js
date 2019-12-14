@@ -7,6 +7,8 @@ import './leaderboards.css';
 
 export default class Leaderboards extends React.Component {
     _adapter = new DataAdapter();
+    _loading = true;
+    _loadingInterval;
 
     constructor(props) {
         super(props);
@@ -14,10 +16,18 @@ export default class Leaderboards extends React.Component {
             games: [],
             scores: [],
             currentGame:undefined,
+            loadingCount:0,
         };
     }
 
     componentDidMount() {
+        this._loadingInterval = setInterval(() => {
+            let count = this.state.loadingCount+1;
+            if (count > 3) {
+                count = 0;
+            }
+            this.setState({loadingCount:count});
+        }, 400);
         this.loadGames();
     }
 
@@ -30,20 +40,37 @@ export default class Leaderboards extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <div className="game-list-container">
-                    { this.state.games.map((item, key) => <NavLink key={key} to={`/leaderboards/${item.slug}`} exact>{item.name}</NavLink>) }
+        if (this._loading === true) {
+            return (
+                <div>
+                    <div className="game-list-container"><span className="loading-message">{this.getLoadingMessage()}</span></div>
                 </div>
-                <ReactTable data={this.state.scores} 
-                            columns={this.getScoreColumns()}
-                            defaultPageSize={10} />
-            </div>
-        );
+            )
+        } else if (this.state.games.length > 0) {
+            return (
+                <div>
+                    <div className="game-list-container">
+                        { this.state.games.map((item, key) => <NavLink key={key} to={`/leaderboards/${item.slug}`} exact>{item.name}</NavLink>) }
+                    </div>
+                    <ReactTable data={this.state.scores} 
+                                columns={this.getScoreColumns()}
+                                defaultPageSize={10} />
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <div className="game-list-container"><span className="loading-message">No games were found.</span></div>
+                </div>
+            )
+        }
+        
     }
 
     async loadGames() {
         let data = await this._adapter.getGames();
+        clearInterval(this._loadingInterval);
+        this._loading = false;
         this.setState({games: data});
     }
 
@@ -98,5 +125,10 @@ export default class Leaderboards extends React.Component {
         for (var i = start; i < max; i++) {
             arr.push(<li key={i}>Game Name</li>);
         }
+    }
+
+    getLoadingMessage() {
+        let elipses = '...'.slice(0, this.state.loadingCount);
+        return `Loading games${elipses}`;
     }
 }

@@ -23,7 +23,7 @@ export default class DataAdapter {
             description: 'A 2D infinite runner built in Javascript with the Phaser game engine.',
             git: 'https://github.com/adam-dill/ELE',
             project: 'projects/ele/',
-            width: 900,
+            width: 1000,
             height: 600,
         },
         {
