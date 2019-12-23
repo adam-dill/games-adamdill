@@ -24,10 +24,15 @@ export default class GameDisplay extends React.Component {
         return (
             <div>
                 <Link to='/games' className="return-button button">Back to Games</Link>
-                <iframe src={data.project} scrolling="no" width={data.width} height={data.height} />
-                <p>{data.name}</p>
-                <p>{data.description}</p>
-                <a href={data.git} title="View on GitHub" target="_blank" rel="noopener noreferrer"><img src='../assets/vendoricons/GitHub_Logo.png' height="55" /></a>
+                <Link to={data.project} target="_blank" className="launch-button button">Launch</Link>
+                <a href={data.git} title="View on GitHub" target="_blank" rel="noopener noreferrer"><img src='../assets/vendoricons/GitHub_Logo.png' height="40" /></a>
+                
+                <div className="image-container">
+                    <div>
+                        <img src={data.image} />
+                    </div>
+                </div>
+                <h3>{data.name}</h3>
             </div>
         );
     }
