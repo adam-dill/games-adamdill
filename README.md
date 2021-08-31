@@ -1,5 +1,5 @@
 # games-adamdill
 
-[site](http://games.adamdill.com/projects)
+[games.adamdill.com](http://games.adamdill.com)
 
 Website used for game type projects.
